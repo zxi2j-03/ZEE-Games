@@ -4,87 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>لعبة النقر</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at 30% 20%, #ff8ba7, #ff5277 60%, #e33663);
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .hud {
-      position: fixed;
-      top: 12px;
-      left: 12px;
-      right: 12px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      z-index: 1;
-    }
-
-    .pill {
-      background: rgba(255,255,255,0.2);
-      backdrop-filter: blur(6px);
-      padding: 8px 14px;
-      border-radius: 999px;
-    }
-
-    #gameButton {
-      position: absolute;
-      padding: 12px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      background: #fff;
-      color: #e33663;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    }
-
-    #startScreen {
-      position: fixed;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      background: rgba(0,0,0,0.4);
-      z-index: 2;
-    }
-
-    .start-card {
-      background: #fff;
-      color: #333;
-      padding: 24px 28px;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-    }
-
-    #startButton {
-      margin-top: 12px;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 10px;
-      background: #e33663;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- شريط المعلومات -->
   <div class="hud">
     <div id="score" class="pill">النقاط: 0</div>
     <div id="timer" class="pill">الوقت: 10</div>
     <div id="highScore" class="pill">أعلى نقاط: 0</div>
   </div>
 
+  <!-- زر اللعبة -->
   <button id="gameButton">اضغطني</button>
 
+  <!-- شاشة البداية -->
   <div id="startScreen">
     <div class="start-card">
       <h2>مرحبًا بك في لعبة النقر!</h2>
       <p>عندك 10 ثوانٍ لتحقق أعلى نقاط</p>
       <button id="startButton">ابدأ اللعب</button>
+    </div>
+  </div>
+
+  <!-- اسمك وصورتك -->
+  <div id="branding">
+    <img src="lee-icon.png" alt="Lee" id="profilePic" />
+    <span id="username">Lee</span>
+  </div>
+
+  <!-- صوت النقر -->
+  <audio id="clickSound" preload="auto">
+    <source src="click.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
