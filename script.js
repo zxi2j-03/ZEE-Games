@@ -101,3 +101,4 @@ function createStar() {
 
 setInterval(createStar, 500); // تظهر نجمة كل نصف ثانية
 
+
