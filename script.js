@@ -96,7 +96,7 @@ function createStar() {
   star.style.width = "6px";
   star.style.height = "6px";
   star.style.borderRadius = "50%";
-  star.style.background = "#fff";
+  star.style.background = "#ccc";
   star.style.left = Math.random() * window.innerWidth + "px";
   star.style.top = Math.random() * window.innerHeight + "px";
   document.body.appendChild(star);
