@@ -1,4 +1,3 @@
-// عناصر الصفحة
 const button = document.getElementById("gameButton");
 const scoreDisplay = document.getElementById("score");
 const timerDisplay = document.getElementById("timer");
@@ -7,13 +6,11 @@ const clickSound = document.getElementById("clickSound");
 const startScreen = document.getElementById("startScreen");
 const startButton = document.getElementById("startButton");
 
-// الحالة
 let score = 0;
 let highScore = 0;
 let timeLeft = 10;
 let timerId = null;
 
-// تحريك الزر داخل الشاشة
 function clamp(val, min, max) {
   return Math.max(min, Math.min(max, val));
 }
@@ -21,25 +18,20 @@ function clamp(val, min, max) {
 function moveButton() {
   const btnWidth = button.offsetWidth || 120;
   const btnHeight = button.offsetHeight || 48;
-
   const maxX = window.innerWidth - btnWidth - 8;
   const maxY = window.innerHeight - btnHeight - 8;
-
   const x = clamp(Math.random() * maxX, 8, maxX);
   const y = clamp(Math.random() * maxY, 70, maxY);
-
   button.style.left = `${x}px`;
   button.style.top = `${y}px`;
 }
 
-// تحديث العرض
 function updateHUD() {
   scoreDisplay.textContent = `النقاط: ${score}`;
   timerDisplay.textContent = `الوقت: ${timeLeft}`;
   highDisplay.textContent = `أعلى نقاط: ${highScore}`;
 }
 
-// بدء المؤقت
 function startTimer() {
   clearInterval(timerId);
   timeLeft = 10;
@@ -57,7 +49,6 @@ function startTimer() {
   }, 1000);
 }
 
-// نهاية الجولة
 function endRound() {
   if (score > highScore) {
     highScore = score;
@@ -72,7 +63,6 @@ function endRound() {
   startScreen.style.display = "grid";
 }
 
-// عند النقر على الزر
 button.addEventListener("click", async () => {
   score++;
   updateHUD();
@@ -84,7 +74,6 @@ button.addEventListener("click", async () => {
   moveButton();
 });
 
-// بدء اللعبة من شاشة البداية
 startButton.addEventListener("click", () => {
   startScreen.style.display = "none";
   score = 0;
@@ -94,16 +83,13 @@ startButton.addEventListener("click", () => {
   startTimer();
 });
 
-// تهيئة أولية
 window.addEventListener("load", () => {
   updateHUD();
   moveButton();
 });
 
-// إعادة تموضع الزر عند تغيير حجم النافذة
 window.addEventListener("resize", moveButton);
 
-// تأثير النجوم
 function createStar() {
   const star = document.createElement("div");
   star.style.position = "absolute";
