@@ -38,7 +38,7 @@ function startTimer() {
     clearInterval(timerId);
   }
 
-  timeLeft = 10;
+  timeLeft = 10; // ← تأكد أن هذا الرقم هنا
   timerDisplay.textContent = `الوقت: ${timeLeft}`;
 
   timerId = setInterval(() => {
@@ -52,6 +52,7 @@ function startTimer() {
     }
   }, 1000);
 }
+
 
 // إنهاء الجولة
 function endRound() {
@@ -106,5 +107,6 @@ function createStar() {
 }
 
 setInterval(createStar, 500);
+
 
 
