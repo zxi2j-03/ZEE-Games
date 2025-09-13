@@ -1,23 +1,23 @@
-// عناصر من الصفحة
+// عناصر الصفحة
 const button = document.getElementById("gameButton");
 const scoreDisplay = document.getElementById("score");
 const timerDisplay = document.getElementById("timer");
+const highDisplay  = document.getElementById("high");
 const clickSound = document.getElementById("clickSound");
 const startScreen = document.getElementById("startScreen");
 const startButton = document.getElementById("startButton");
 
-// متغيرات الحالة
+// الحالة
 let score = 0;
 let highScore = 0;
-let timeLeft = 5;
+let timeLeft = 10;     // ← مدة الجولة
 let timerId = null;
 
-// دالة لضمان بقاء الزر داخل الشاشة
+// أدوات
 function clamp(val, min, max) {
   return Math.max(min, Math.min(max, val));
 }
 
-// تحريك الزر إلى مكان عشوائي مرئي
 function moveButton() {
   const btnWidth = button.offsetWidth || 120;
   const btnHeight = button.offsetHeight || 48;
@@ -32,18 +32,24 @@ function moveButton() {
   button.style.top = `${y}px`;
 }
 
-// بدء المؤقت
-function startTimer() {
-  if (timerId !== null) {
-    clearInterval(timerId);
-  }
-
-  timeLeft = 10; // ← تأكد أن هذا الرقم هنا
+function updateHUD() {
+  scoreDisplay.textContent = `النقاط: ${score}`;
   timerDisplay.textContent = `الوقت: ${timeLeft}`;
+  highDisplay.textContent  = `أعلى نقاط: ${highScore}`;
+}
+
+// مؤقت الجولة
+function startTimer() {
+  // لا تشغل مؤقتًا جديدًا إذا كان القديم يعمل
+  if (timerId !== null) return;
+
+  // ابدأ من 10 دائمًا عند بدء الجولة
+  timeLeft = 10;
+  updateHUD();
 
   timerId = setInterval(() => {
     timeLeft--;
-    timerDisplay.textContent = `الوقت: ${timeLeft}`;
+    updateHUD();
 
     if (timeLeft <= 0) {
       clearInterval(timerId);
@@ -53,45 +59,55 @@ function startTimer() {
   }, 1000);
 }
 
-
-// إنهاء الجولة
 function endRound() {
   if (score > highScore) {
     highScore = score;
   }
+  updateHUD();
 
   alert(`انتهى الوقت!\nنقاطك: ${score}\nأعلى نقاط: ${highScore}`);
+
+  // إعادة التهيئة للجولة التالية
   score = 0;
-  scoreDisplay.textContent = `النقاط: ${score}`;
+  timeLeft = 10;
+  updateHUD();
   moveButton();
-  startTimer();
+
+  // أظهر شاشة البداية لبدء جولة جديدة
+  startScreen.style.display = "grid";
 }
 
-// عند النقر على الزر
 button.addEventListener("click", async () => {
   score++;
-  scoreDisplay.textContent = `النقاط: ${score}`;
+  updateHUD();
 
   try {
     await clickSound.play();
-  } catch (e) {
-    // تجاهل الخطأ
+  } catch (_) {
+    // قد يمنع المتصفح التشغيل التلقائي للصوت
   }
 
   moveButton();
 });
 
-// عند الضغط على زر "ابدأ اللعب"
+// بدء اللعب من شاشة البداية
 startButton.addEventListener("click", () => {
+  // أخفِ شاشة البداية، ثم حرّك الزر وابدأ المؤقت
   startScreen.style.display = "none";
   moveButton();
   startTimer();
 });
 
+// تهيئة أولية
+window.addEventListener("load", () => {
+  updateHUD();
+  moveButton();
+});
+
 // إعادة تموضع الزر عند تغيير حجم النافذة
 window.addEventListener("resize", moveButton);
 
-// تأثير النجوم في الخلفية
+// نجوم ديكورية
 function createStar() {
   const star = document.createElement("div");
   star.style.position = "absolute";
@@ -100,13 +116,9 @@ function createStar() {
   star.style.borderRadius = "50%";
   star.style.background = "#fff";
   star.style.left = Math.random() * window.innerWidth + "px";
-  star.style.top = Math.random() * window.innerHeight + "px";
+  star.style.top  = Math.random() * window.innerHeight + "px";
+  star.style.opacity = "0.9";
   document.body.appendChild(star);
-
   setTimeout(() => star.remove(), 3000);
 }
-
 setInterval(createStar, 500);
-
-
-
