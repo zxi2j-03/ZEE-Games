@@ -41,7 +41,7 @@ function startTimer() {
   timerDisplay.textContent = `الوقت: ${timeLeft}`;
 
   timerId = setInterval(() => {
-    timeLeft--;
+    timeLeft = 5;
     timerDisplay.textContent = `الوقت: ${timeLeft}`;
 
     if (timeLeft <= 0) {
@@ -101,6 +101,7 @@ function createStar() {
 }
 
 setInterval(createStar, 500); // تظهر نجمة كل نصف ثانية
+
 
 
 
