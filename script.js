@@ -7,7 +7,7 @@ const clickSound = document.getElementById("clickSound");
 // متغيرات الحالة
 let score = 0;
 let highScore = 0; // ← أعلى نقاط
-let timeLeft = 5;
+let timeLeft = 0;
 let timerId = null;
 
 // دالة لضمان بقاء الزر داخل الشاشة
@@ -104,3 +104,4 @@ function createStar() {
 }
 
 setInterval(createStar, 500);
+
