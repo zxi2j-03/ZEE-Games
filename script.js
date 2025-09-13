@@ -6,7 +6,7 @@ const clickSound = document.getElementById("clickSound");
 
 // متغيرات الحالة
 let score = 0;
-let timeLeft = 0;
+let timeLeft = 5;
 let timerId = null;
 
 // دالة لضمان بقاء الزر داخل الشاشة
@@ -101,6 +101,7 @@ function createStar() {
 }
 
 setInterval(createStar, 500); // تظهر نجمة كل نصف ثانية
+
 
 
 
