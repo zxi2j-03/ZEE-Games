@@ -6,8 +6,8 @@ const clickSound = document.getElementById("clickSound");
 
 // متغيرات الحالة
 let score = 0;
-let highScore = 0; // ← أعلى نقاط
-let timeLeft = 0;
+let highScore = 0;
+let timeLeft = 5;
 let timerId = null;
 
 // دالة لضمان بقاء الزر داخل الشاشة
@@ -30,9 +30,8 @@ function moveButton() {
   button.style.top = `${y}px`;
 }
 
-// بدء المؤقت
-function moveButton();
-{
+// بدء المؤقت مع مسح أي مؤقت سابق
+function startTimer() {
   if (timerId !== null) {
     clearInterval(timerId);
   }
@@ -52,7 +51,7 @@ function moveButton();
   }, 1000);
 }
 
-// إنهاء الجولة
+// إنهاء الجولة وإظهار النقاط وأعلى نقاط
 function endRound() {
   if (score > highScore) {
     highScore = score;
@@ -65,7 +64,7 @@ function endRound() {
   startTimer();
 }
 
-// عند النقر على الزر
+// معالجة النقر على الزر
 button.addEventListener("click", async () => {
   score++;
   scoreDisplay.textContent = `النقاط: ${score}`;
@@ -73,14 +72,14 @@ button.addEventListener("click", async () => {
   try {
     await clickSound.play();
   } catch (e) {
-    // تجاهل الخطأ
+    // بعض المتصفحات قد تمنع الصوت
   }
 
   moveButton();
-  startTimer();
+  // لا نعيد تشغيل المؤقت هنا حتى لا يتداخل
 });
 
-// تهيئة أولية
+// تهيئة أولية عند تحميل الصفحة
 window.addEventListener("load", () => {
   moveButton();
   startTimer();
@@ -89,7 +88,7 @@ window.addEventListener("load", () => {
 // إعادة تموضع الزر عند تغيير حجم النافذة
 window.addEventListener("resize", moveButton);
 
-// تأثير النجوم
+// تأثير النجوم في الخلفية
 function createStar() {
   const star = document.createElement("div");
   star.style.position = "absolute";
@@ -105,5 +104,3 @@ function createStar() {
 }
 
 setInterval(createStar, 500);
-
-
