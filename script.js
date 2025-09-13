@@ -9,7 +9,7 @@ const startButton = document.getElementById("startButton");
 // متغيرات الحالة
 let score = 0;
 let highScore = 0;
-let timeLeft = 10;
+let timeLeft = 5;
 let timerId = null;
 
 // دالة لضمان بقاء الزر داخل الشاشة
@@ -38,7 +38,7 @@ function startTimer() {
     clearInterval(timerId);
   }
 
-  timeLeft = 5;
+  timeLeft = 10;
   timerDisplay.textContent = `الوقت: ${timeLeft}`;
 
   timerId = setInterval(() => {
@@ -106,4 +106,5 @@ function createStar() {
 }
 
 setInterval(createStar, 500);
+
 
