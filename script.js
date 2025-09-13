@@ -3,6 +3,8 @@ const button = document.getElementById("gameButton");
 const scoreDisplay = document.getElementById("score");
 const timerDisplay = document.getElementById("timer");
 const clickSound = document.getElementById("clickSound");
+const startScreen = document.getElementById("startScreen");
+const startButton = document.getElementById("startButton");
 
 // متغيرات الحالة
 let score = 0;
@@ -30,7 +32,7 @@ function moveButton() {
   button.style.top = `${y}px`;
 }
 
-// بدء المؤقت مع مسح أي مؤقت سابق
+// بدء المؤقت
 function startTimer() {
   if (timerId !== null) {
     clearInterval(timerId);
@@ -51,7 +53,7 @@ function startTimer() {
   }, 1000);
 }
 
-// إنهاء الجولة وإظهار النقاط وأعلى نقاط
+// إنهاء الجولة
 function endRound() {
   if (score > highScore) {
     highScore = score;
@@ -64,7 +66,7 @@ function endRound() {
   startTimer();
 }
 
-// معالجة النقر على الزر
+// عند النقر على الزر
 button.addEventListener("click", async () => {
   score++;
   scoreDisplay.textContent = `النقاط: ${score}`;
@@ -72,15 +74,15 @@ button.addEventListener("click", async () => {
   try {
     await clickSound.play();
   } catch (e) {
-    // بعض المتصفحات قد تمنع الصوت
+    // تجاهل الخطأ
   }
 
   moveButton();
-  // لا نعيد تشغيل المؤقت هنا حتى لا يتداخل
 });
 
-// تهيئة أولية عند تحميل الصفحة
-window.addEventListener("load", () => {
+// عند الضغط على زر "ابدأ اللعب"
+startButton.addEventListener("click", () => {
+  startScreen.style.display = "none";
   moveButton();
   startTimer();
 });
