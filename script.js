@@ -36,7 +36,8 @@ function startTimer() {
     clearInterval(timerId);
   }
 
-  timeLeft = 5;
+  timeLeft = Math.max(3, 10 - score); // كلما زادت النقاط، قل الوقت (لكن لا يقل عن 3 ثواني)
+  
   timerDisplay.textContent = `الوقت: ${timeLeft}`;
 
   timerId = setInterval(() => {
@@ -100,6 +101,7 @@ function createStar() {
 }
 
 setInterval(createStar, 500); // تظهر نجمة كل نصف ثانية
+
 
 
 
