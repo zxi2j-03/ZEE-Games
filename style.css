@@ -1,114 +1,82 @@
-* { box-sizing: border-box; }
-#startScreen {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 20px;
-  border-radius: 12px;
-  z-index: 10;
-}
-
+/* خلفية اللعبة */
 body {
   margin: 0;
-  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at 30% 20%, #ff8ba7, #ff5277 60%, #e33663);
+  color: #fff;
   overflow: hidden;
-  position: relative; /* مرجع تموضع للزر */
+}
+
+/* شريط المعلومات العلوي */
+.hud {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  right: 12px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #f7f7fb;
-  font-family: Arial, sans-serif;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 1;
 }
 
-h1 {
-  margin: 16px 0 8px;
-  font-size: 22px;
+.pill {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(6px);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 16px;
 }
 
-#hud {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 8px;
-  font-size: 18px;
-}
-
+/* زر اللعبة */
 #gameButton {
   position: absolute;
-  padding: 16px 22px;
+  padding: 12px 20px;
   font-size: 18px;
   border: none;
   border-radius: 10px;
-  background: #c70d64;
-  color: #fff;
+  background: #fff;
+  color: #e33663;
   cursor: pointer;
-  transition: transform 0.1s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease;
 }
 
-#gameButton:active {
-  transform: scale(0.97);
-}
-body {
-  background: linear-gradient(to bottom right, #e54646e0, #e76eabe5);
-}
-body {
-  background: linear-gradient(270deg, #e0613a, #e7d56e, #bff36d);
-  background-size: 600% 600%;
-  animation: gradientMove 10s ease infinite;
+#gameButton:hover {
+  transform: scale(1.05);
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-body {
-  background-image: url("background.jpg");
-  background-size: cover;
-  background-position: center;
-}body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(to bottom right, #e54646, #dd65af);
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-header {
-  text-align: center;
-  margin-top: 20px;
-}
-
-header img {
-  width: 120px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-footer {
+/* شاشة البداية */
+#startScreen {
   position: fixed;
-  bottom: 10px;
-  right: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(0,0,0,0.3);
-  padding: 6px 12px;
-  border-radius: 8px;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,0.4);
+  z-index: 2;
+}
+
+.start-card {
+  background: #fff;
+  color: #333;
+  padding: 24px 28px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  min-width: 260px;
+}
+
+#startButton {
+  margin-top: 12px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #e33663;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.footer-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+#startButton:hover {
+  background: #c92a56;
 }
-
-.footer-name {
-  margin: 0;
-}
-
