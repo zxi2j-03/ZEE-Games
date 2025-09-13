@@ -6,7 +6,6 @@ body {
   overflow: hidden;
 }
 
-/* شريط المعلومات */
 .hud {
   position: fixed;
   top: 12px;
@@ -26,7 +25,6 @@ body {
   font-size: 16px;
 }
 
-/* زر اللعبة */
 #gameButton {
   position: absolute;
   padding: 12px 20px;
@@ -44,7 +42,6 @@ body {
   transform: scale(1.05);
 }
 
-/* شاشة البداية */
 #startScreen {
   position: fixed;
   inset: 0;
@@ -80,7 +77,6 @@ body {
   background: #c92a56;
 }
 
-/* اسمك وصورتك */
 #branding {
   position: fixed;
   bottom: 12px;
