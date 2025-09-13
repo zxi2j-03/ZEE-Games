@@ -31,7 +31,8 @@ function moveButton() {
 }
 
 // بدء المؤقت
-function startTimer() {
+function moveButton();
+{
   if (timerId !== null) {
     clearInterval(timerId);
   }
@@ -104,4 +105,5 @@ function createStar() {
 }
 
 setInterval(createStar, 500);
+
 
