@@ -41,8 +41,7 @@ function updateHUD() {
 
 // بدء المؤقت
 function startTimer() {
-  if (timerId !== null) return;
-
+  clearInterval(timerId);
   timeLeft = 10;
   updateHUD();
 
@@ -88,6 +87,9 @@ button.addEventListener("click", async () => {
 // بدء اللعبة من شاشة البداية
 startButton.addEventListener("click", () => {
   startScreen.style.display = "none";
+  score = 0;
+  timeLeft = 10;
+  updateHUD();
   moveButton();
   startTimer();
 });
