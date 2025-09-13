@@ -1,11 +1,12 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at 30% 20%, #ff8ba7, #ff5277 60%, #e33663);
-  color: #fff;
+  background: linear-gradient(to bottom right, #f0f0f0, #999);
+  color: #333;
   overflow: hidden;
 }
 
+/* شريط المعلومات */
 .hud {
   position: fixed;
   top: 12px;
@@ -18,46 +19,50 @@ body {
 }
 
 .pill {
-  background: rgba(255,255,255,0.2);
+  background: rgba(200,200,200,0.3);
   backdrop-filter: blur(6px);
   padding: 8px 14px;
   border-radius: 999px;
   font-size: 16px;
+  color: #333;
 }
 
+/* زر اللعبة */
 #gameButton {
   position: absolute;
   padding: 12px 20px;
   font-size: 18px;
   border: none;
   border-radius: 10px;
-  background: #fff;
-  color: #e33663;
+  background: #e0e0e0;
+  color: #333;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  transition: transform 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, background 0.3s ease;
 }
 
 #gameButton:hover {
   transform: scale(1.05);
+  background: #d0d0d0;
 }
 
+/* شاشة البداية */
 #startScreen {
   position: fixed;
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.3);
   z-index: 2;
 }
 
 .start-card {
-  background: #fff;
+  background: #f8f8f8;
   color: #333;
   padding: 24px 28px;
   border-radius: 16px;
   text-align: center;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
   min-width: 260px;
 }
 
@@ -66,7 +71,7 @@ body {
   padding: 10px 16px;
   border: none;
   border-radius: 10px;
-  background: #e33663;
+  background: #999;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
@@ -74,9 +79,10 @@ body {
 }
 
 #startButton:hover {
-  background: #c92a56;
+  background: #666;
 }
 
+/* اسم المستخدم وصورته */
 #branding {
   position: fixed;
   bottom: 12px;
@@ -84,7 +90,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255,255,255,0.15);
+  background: rgba(180,180,180,0.3);
   padding: 8px 12px;
   border-radius: 999px;
   backdrop-filter: blur(6px);
@@ -101,6 +107,6 @@ body {
 
 #username {
   font-size: 16px;
-  color: #fff;
+  color: #333;
   font-weight: bold;
 }
