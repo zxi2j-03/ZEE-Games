@@ -1,4 +1,4 @@
-// مراجع العناصر
+// عناصر من الصفحة
 const button = document.getElementById("gameButton");
 const scoreDisplay = document.getElementById("score");
 const timerDisplay = document.getElementById("timer");
@@ -6,6 +6,7 @@ const clickSound = document.getElementById("clickSound");
 
 // متغيرات الحالة
 let score = 0;
+let highScore = 0; // ← أعلى نقاط
 let timeLeft = 5;
 let timerId = null;
 
@@ -16,32 +17,30 @@ function clamp(val, min, max) {
 
 // تحريك الزر إلى مكان عشوائي مرئي
 function moveButton() {
-  const btnWidth = button.offsetWidth || 120;   // تقدير احتياطي
+  const btnWidth = button.offsetWidth || 120;
   const btnHeight = button.offsetHeight || 48;
 
-  const maxX = window.innerWidth - btnWidth - 8;  // هامش بسيط
+  const maxX = window.innerWidth - btnWidth - 8;
   const maxY = window.innerHeight - btnHeight - 8;
 
   const x = clamp(Math.random() * maxX, 8, maxX);
-  const y = clamp(Math.random() * maxY, 70, maxY); // رفعه قليلاً تحت العنوان
+  const y = clamp(Math.random() * maxY, 70, maxY);
 
   button.style.left = `${x}px`;
   button.style.top = `${y}px`;
 }
 
-// بدء المؤقت مع مسح أي مؤقت سابق
+// بدء المؤقت
 function startTimer() {
-  // مسح المؤقت السابق إن وجد
   if (timerId !== null) {
     clearInterval(timerId);
   }
 
-  timeLeft = Math.max(3, 10 - score); // كلما زادت النقاط، قل الوقت (لكن لا يقل عن 3 ثواني)
-  
+  timeLeft = 5;
   timerDisplay.textContent = `الوقت: ${timeLeft}`;
 
   timerId = setInterval(() => {
-    timeLeft = 5;
+    timeLeft--;
     timerDisplay.textContent = `الوقت: ${timeLeft}`;
 
     if (timeLeft <= 0) {
@@ -52,40 +51,44 @@ function startTimer() {
   }, 1000);
 }
 
-// إنهاء الجولة وإعادة التهيئة
+// إنهاء الجولة
 function endRound() {
-  alert(`انتهى الوقت! نقاطك: ${score}`);
+  if (score > highScore) {
+    highScore = score;
+  }
+
+  alert(`انتهى الوقت!\nنقاطك: ${score}\nأعلى نقاط: ${highScore}`);
   score = 0;
   scoreDisplay.textContent = `النقاط: ${score}`;
   moveButton();
   startTimer();
 }
 
-// معالجة النقر
+// عند النقر على الزر
 button.addEventListener("click", async () => {
   score++;
   scoreDisplay.textContent = `النقاط: ${score}`;
 
-  // تشغيل الصوت بأمان
   try {
     await clickSound.play();
   } catch (e) {
-    // بعض المتصفحات قد تمنع الصوت؛ نتجاهل الخطأ
-    // console.warn("تعذر تشغيل الصوت:", e);
+    // تجاهل الخطأ
   }
 
   moveButton();
-  startTimer(); // إعادة ضبط الوقت عند كل نقرة
+  startTimer();
 });
 
-// تهيئة أولية بعد تحميل الصفحة
+// تهيئة أولية
 window.addEventListener("load", () => {
   moveButton();
   startTimer();
 });
 
-// تحديث تموضع الزر عند تغيير حجم النافذة
+// إعادة تموضع الزر عند تغيير حجم النافذة
 window.addEventListener("resize", moveButton);
+
+// تأثير النجوم
 function createStar() {
   const star = document.createElement("div");
   star.style.position = "absolute";
@@ -97,13 +100,7 @@ function createStar() {
   star.style.top = Math.random() * window.innerHeight + "px";
   document.body.appendChild(star);
 
-  setTimeout(() => star.remove(), 3000); // تختفي بعد 3 ثوانٍ
+  setTimeout(() => star.remove(), 3000);
 }
 
-setInterval(createStar, 500); // تظهر نجمة كل نصف ثانية
-
-
-
-
-
-
+setInterval(createStar, 500);
