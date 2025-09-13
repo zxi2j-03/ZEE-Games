@@ -1,44 +1,109 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <title>لعبة السرعة</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>لعبة النقر</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, Arial, sans-serif;
+      background: radial-gradient(circle at 30% 20%, #ff8ba7, #ff5277 60%, #e33663);
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+    .hud {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .pill {
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+      padding: 8px 14px;
+      border-radius: 999px;
+      pointer-events: auto;
+    }
+    #gameArea {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+    #gameButton {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      padding: 12px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #fff;
+      color: #e33663;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      z-index: 0;
+    }
+    #startScreen {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,0.35);
+      z-index: 2; /* أعلى من كل شيء */
+    }
+    .start-card {
+      background: rgba(255,255,255,0.92);
+      color: #333;
+      padding: 24px 28px;
+      border-radius: 16px;
+      text-align: center;
+      min-width: 260px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+    #startButton {
+      margin-top: 10px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
+      background: #e33663;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<header>
-<header>
-  <img src="kdjd.png" alt="اللعبة السرعة" style="width: 120px; margin-top: 10px;">
-</header>
-</header>
-<div id="startScreen">
-  <h2>مرحبًا بك في لعبة النقر!</h2>
-  <p>اضغط على الزر لبدء اللعب</p>
-  <button id="startButton">ابدأ اللعب</button>
-</div>
-
 <body>
-  <h1>اضغط على الزر قبل انتهاء الوقت!</h1>
-
-  <div id="hud">
-    <p id="timer">الوقت: 5</p>
-    <p id="score">النقاط: 0</p>
+  <div class="hud">
+    <div id="score" class="pill">النقاط: 0</div>
+    <div id="timer" class="pill">الوقت: 10</div>
+    <div id="high" class="pill">أعلى نقاط: 0</div>
   </div>
-س
-  <button id="gameButton">اضغطني!</button>
 
-  <!-- تأكد أن الملف موجود بنفس المجلد -->
-  <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+  <div id="gameArea">
+    <button id="gameButton">اضغطني</button>
+  </div>
 
-  <!-- وضع السكربت في النهاية يضمن أن العناصر موجودة -->
-  <script src="script.js"></script>
-  <link rel="stylesheet" href="style.css">
- </body>
- <header>
-   <footer>
-     <img src="Tessa.jpg" alt="شعار Lee" style="width:50px;">
-     <p class="footer-name">© تصميم zxi2j.03</p>
-   </footer>
- </header>
+  <div id="startScreen">
+    <div class="start-card">
+      <h2>مرحبًا بك في لعبة النقر!</h2>
+      <p>عندك 10 ثوانٍ لتحقق أعلى نقاط.</p>
+      <button id="startButton">ابدأ اللعب</button>
+    </div>
+  </div>
+
+  <audio id="clickSound" preload="auto">
+    <source src="click.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js" defer></script>
+</body>
 </html>
-
-
