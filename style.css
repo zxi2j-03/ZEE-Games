@@ -96,15 +96,16 @@ body {
 }
 
 #profilePic {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #fff;
 }
 
 #username {
-  font-size: 16px;
+  font-size: 15px;
   color: #333;
   font-weight: bold;
 }
+
