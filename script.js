@@ -89,18 +89,3 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("resize", moveButton);
-
-function createStar() {
-  const star = document.createElement("div");
-  star.style.position = "absolute";
-  star.style.width = "6px";
-  star.style.height = "6px";
-  star.style.borderRadius = "50%";
-  star.style.background = "#ccc";
-  star.style.left = Math.random() * window.innerWidth + "px";
-  star.style.top = Math.random() * window.innerHeight + "px";
-  document.body.appendChild(star);
-  setTimeout(() => star.remove(), 3000);
-}
-
-setInterval(createStar, 500);
