@@ -40,23 +40,11 @@ body {
   transition: transform 0.3s ease, background 0.3s ease, left 0.3s ease, top 0.3s ease;
   z-index: 1;
 }
-body {
-  margin: 0;
-  height: 100vh;
-  background: #eee;
-  position: relative;
-}
 
-#gameButton {
-  position: absolute;
-  left: 50px;
-  top: 50px;
-  padding: 10px 20px;
-  background: #ccc;
-  border: none;
-  cursor: pointer;
+#gameButton:hover {
+  transform: scale(1.05);
+  background: #d0d0d0;
 }
-
 
 #startScreen {
   position: fixed;
@@ -120,4 +108,3 @@ body {
   color: #333;
   font-weight: bold;
 }
-
