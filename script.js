@@ -60,7 +60,6 @@ function endRound() {
   timeLeft = 10;
   updateHUD();
   moveButton();
-  console.log("تحرك الزر");
   startScreen.style.display = "grid";
 }
 
@@ -90,4 +89,3 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("resize", moveButton);
-
