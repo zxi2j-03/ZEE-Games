@@ -4,9 +4,9 @@ body {
   background: linear-gradient(to bottom right, #f0f0f0, #999);
   color: #333;
   overflow: hidden;
+  position: relative;
 }
 
-/* شريط المعلومات */
 .hud {
   position: fixed;
   top: 12px;
@@ -27,7 +27,6 @@ body {
   color: #333;
 }
 
-/* زر اللعبة */
 #gameButton {
   position: absolute;
   padding: 12px 20px;
@@ -39,6 +38,7 @@ body {
   cursor: pointer;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   transition: transform 0.3s ease, background 0.3s ease, left 0.3s ease, top 0.3s ease;
+  z-index: 1;
 }
 
 #gameButton:hover {
@@ -46,7 +46,6 @@ body {
   background: #d0d0d0;
 }
 
-/* شاشة البداية */
 #startScreen {
   position: fixed;
   inset: 0;
@@ -82,7 +81,6 @@ body {
   background: #666;
 }
 
-/* اسم المستخدم وصورته */
 #branding {
   position: fixed;
   bottom: 12px;
